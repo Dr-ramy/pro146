@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>محاكاة جغرافية متقدمة</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<style>
+body {
+  font-family: Arial;
+  direction: rtl;
+  text-align: center;
+  background: #eef2f7;
+}
+
+.container {
+  width: 85%;
+  margin: auto;
+}
+
+#map {
+  height: 450px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+input, button, select {
+  padding: 8px;
+  margin: 8px;
+}
+
+#result {
+  font-size: 18px;
+  color: #c0392b;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>🌍 محاكاة جغرافية تفاعلية متقدمة</h2>
+
+  <!-- الارتفاع -->
+  <input type="number" id="height" placeholder="الارتفاع (متر)">
+  <button onclick="calcTemp()">درجة الحرارة</button>
+
+  <!-- الفيضانات -->
+  <input type="range" id="water" min="0" max="100" value="0">
+  <button onclick="simulateFlood()">محاكاة فيضان</button>
+
+  <!-- السكان -->
+  <button onclick="showPopulation()">توزيع السكان</button>
+
+  <!-- المناخ -->
+  <select onchange="changeClimate(this.value)">
+    <option value="">اختر طبقة مناخية</option>
+    <option value="temp">حرارة</option>
+    <option value="rain">أمطار</option>
+  </select>
+
+  <p id="result"></p>
+  <div id="map"></div>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+var map = L.map('map').setView([30.0444, 31.2357], 6);
+
+// خريطة أساسية
+var baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+baseLayer.addTo(map);
+
+// طبقة حرارة
+var tempLayer = L.tileLayer('https://tile.openweathermap.org/map/temp/{z}/{x}/{y}.png?appid=YOUR_API_KEY');
+
+// طبقة أمطار
+var rainLayer = L.tileLayer('https://tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png?appid=YOUR_API_KEY');
+
+// حساب الحرارة
+function calcTemp() {
+  let h = document.getElementById("height").value;
+  let t = 30 - (h * 0.0065);
+  document.getElementById("result").innerText =
+    "🌡️ الحرارة: " + t.toFixed(2) + "°C";
+}
+
+// محاكاة فيضان
+var floodLayer;
+function simulateFlood() {
+  let level = document.getElementById("water").value;
+
+  if (floodLayer) map.removeLayer(floodLayer);
+
+  floodLayer = L.circle([30.0444, 31.2357], {
+    radius: level * 1000,
+    color: 'blue',
+    fillOpacity: 0.3
+  }).addTo(map);
+
+  document.getElementById("result").innerText =
+    "🌊 مستوى الفيضان: " + level;
+}
+
+// توزيع السكان (نقاط عشوائية)
+function showPopulation() {
+  for (let i = 0; i < 30; i++) {
+    let lat = 29 + Math.random() * 4;
+    let lng = 30 + Math.random() * 4;
+
+    L.circleMarker([lat, lng], {
+      radius: 5
+    }).addTo(map);
+  }
+
+  document.getElementById("result").innerText =
+    "📊 تم عرض توزيع سكاني تقريبي";
+}
+
+// تغيير المناخ
+function changeClimate(type) {
+  map.removeLayer(tempLayer);
+  map.removeLayer(rainLayer);
+
+  if (type === "temp") {
+    tempLayer.addTo(map);
+  } else if (type === "rain") {
+    rainLayer.addTo(map);
+  }
+}
+</script>
+
+</body>
+</html>
