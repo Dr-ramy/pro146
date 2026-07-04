@@ -43,43 +43,39 @@ const GROUP_1: CurriculumMeta = {
     },
     {
     id: "unit-1",
-    title: "مهارات التخطيط للدرس",
+    title: "التخطيط للدرس الإلكتروني",
     lessons: [
-      { id: "lesson_one"    , title: " الأهداف التربوية " },
-      { id: "lesson_two"    , title: " مهارة التخطيط" },
-      { id: "lesson_three"  , title: "تحليل المحتوى" },
-      { id: "lesson_four"    , title: "الوسائل التعليمية" },
-      { id: "lesson_five"  , title: "طرق التدريس" },
+      { id: "lesson_one"    , title: " التخطيط للدرس الإلكتروني " },
     ]
   },
   {
     id: "unit-2",
-    title: "مهارات تنفيذ الدرس",
+    title: "توظيف المنصات التعليمية",
     lessons: [
       { id: "lesson_1", title: "عرض الدرس" },
-      { id: "lesson_2", title: "التهيئة والتمهيد للدرس" },
-      { id: "lesson_3", title: "التعزيز" },
-      { id: "lesson_4", title: "استثارة الدافعية للتعلم" },
-      { id: "lesson_5", title: "التنوع في طرق التدريس" },
-      { id: "lesson_6", title: "استخدام الوسائل التعليمية" },
-      { id: "lesson_7", title: "طرح الأسئلة الصفية" },
-      { id: "lesson_8", title: "إدارة الصف" },
-      { id: "lesson_9", title: "غلق الدرس" }
     ]
   },
   {
     id: "unit-3",
-    title: "التقويم",
+    title: "توظيف استراتيجيات التدريس",
     lessons: [
-      { id: "lesson_1", title: "التقويم" },
+      { id: "lesson_1", title: "توظيف استراتيجيات التدريس" },
       { id: "lesson_2", title: "التقويم الإلكتروني" }
     ]
   },
   {
     id: "unit-4",
-    title: "إعداد الدروس تكنولوجيًا",
+    title: "الذكاء الاصطناعي ودوره في تدريس التاريخ",
     lessons: [
-      { id: "lesson_1", title: "إعداد الدروس تكنولوجيًا" }
+      { id: "lesson_1", title: "الذكاء الاصطناعي ودوره في تدريس التاريخ" }
+    ]
+  }
+    ,
+  {
+    id: "unit-5",
+    title: "التقويم الإلكتروني",
+    lessons: [
+      { id: "lesson_1", title: "التقويم الإلكتروني" }
     ]
   }
 
