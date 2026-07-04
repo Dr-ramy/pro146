@@ -1,4 +1,4 @@
-// PrePost.ts
+//  PrePost.ts
 export type SidebarExtraAction =
   | { type: "openUrl"; url: string; target?: "_self" | "_blank" }
   | { type: "openRoute"; route: string }
