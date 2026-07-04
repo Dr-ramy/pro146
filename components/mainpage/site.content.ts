@@ -2,7 +2,7 @@ export type HomeVariant = "classic" | "news";
 
 /**
  * Content blocks supported by ContentSection renderer
- */
+ */ 
 export type ContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "subheading"; text: string }
